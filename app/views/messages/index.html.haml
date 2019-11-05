@@ -6,38 +6,25 @@
     .header
       .header__lett-box
         .header__left-box__current-group
-          グループ名
+          -# グループ名
+          = @group.name
         %ul.header__left-box__member-list
-          member:
+          %pre Member :&nbsp;
           %li.header__left-box__member-list__member
-            メンバー名
+            - @group.users.each do |user|
+              = user.name
       .header__right-box
         .header__right-box__button
           Edit 
     .messages
-      .message
-        .message__upper-info
-          .message__upper-info__talker
-            メンバー
-          .message__upper-info__date
-            2019/11/01
-        .message__text
-          .message__text__content
-            text
-      .message
-        .message__upper-info
-          .message__upper-info__talker
-            メンバー
-          .message__upper-info__date
-            2019/11/01
-        .message__text
-          .message__text__content
-            text
+    
+      = render @messages
+      
     .form
-      %form
-        %input.form__message
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
         .form__mask
-          %label.form__mask__image
+          = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
-            %input.hidden{type: 'file'}
-        %input.form__submit{type: 'submit', value: 'Send'}
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
