@@ -3,20 +3,20 @@ $(function(){
   function buildHTML(message){
     var content = message.content ? `${message.content}` : "";
     var image = message.image ? `<img src= ${message.image}>` : "";
-    var html = `<div class="message">
+    let html = `<div class="message">
                   <div class="message__upper-info">
-                    <div class="message__upper-info__tolker">
+                    <div class="message__upper-info__talker">
                       ${message.user_name}
                     </div>
-                    <div class="message__upper__date">
+                    <div class="message__upper-info__date">
                       ${message.time}
                     </div>
                   </div>
-                  <div>
-                  </div class="message__text">
+                  <div class="message__text">
                     <p class="message__text__content">
                       ${message.content}
                     </p>
+                  </div>
                 </div>`
     return html;
   }
@@ -35,7 +35,6 @@ $(function(){
     })
 
     .done(function(data){
-      console.log(html)
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#new_message')[0].reset();
