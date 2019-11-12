@@ -14,7 +14,7 @@
               = user.name
       .header__right-box
         .header__right-box__button
-          Edit 
+          = link_to "Edit", edit_group_path(params[:group_id]), method: :get
     .messages
     
       = render @messages
